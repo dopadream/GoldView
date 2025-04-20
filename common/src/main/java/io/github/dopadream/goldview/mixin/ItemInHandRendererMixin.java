@@ -60,8 +60,7 @@ public abstract class ItemInHandRendererMixin {
                        PickaxeViewModel viewModel = new PickaxeViewModel();
                        PickaxeViewModelRenderer renderer = viewModel.RENDERER;
                        poseStack.pushPose();
-                       this.applyItemArmTransform(poseStack, humanoidArm, i);
-                       //renders invisible right now? not sure why
+                       // renders invisible right now? not sure why
                        renderer.render(poseStack, viewModel, multiBufferSource, null, null, Minecraft.getInstance().level.getLightEmission(abstractClientPlayer.blockPosition()), minecraft.getFrameTimeNs());
                        poseStack.popPose();
                    }
