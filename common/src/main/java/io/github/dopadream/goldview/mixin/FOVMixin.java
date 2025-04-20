@@ -49,4 +49,5 @@ public abstract class FOVMixin {
         float vFovRad = 2.0f * (float)Math.atan(Math.tan(hFovRad / 2.0f) / (aspectRatio / baseAspect));
         return (float)Math.toDegrees(vFovRad);
     }
+
 }
