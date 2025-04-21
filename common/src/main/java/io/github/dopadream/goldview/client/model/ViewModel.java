@@ -1,4 +1,4 @@
-package io.github.dopadream.goldview.client.viewmodel;
+package io.github.dopadream.goldview.client.model;
 
 import io.github.dopadream.goldview.client.model.PickaxeViewModel;
 import net.minecraft.client.Minecraft;
@@ -10,7 +10,7 @@ import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.base.GeoRenderState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class ViewModel extends GeoModel<PickaxeViewModel> implements GeoAnimatable {
+public class ViewModel extends GeoModel<ViewModel> implements GeoAnimatable {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     @Override
@@ -40,7 +40,7 @@ public class ViewModel extends GeoModel<PickaxeViewModel> implements GeoAnimatab
     }
 
     @Override
-    public ResourceLocation getAnimationResource(PickaxeViewModel animatable) {
+    public ResourceLocation getAnimationResource(ViewModel animatable) {
         return null;
     }
 }

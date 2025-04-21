@@ -1,7 +1,6 @@
 package io.github.dopadream.goldview.client.model;
 
 import io.github.dopadream.goldview.client.renderer.PickaxeViewModelRenderer;
-import io.github.dopadream.goldview.client.viewmodel.ViewModel;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.animatable.manager.AnimatableManager;
 import software.bernie.geckolib.animatable.processing.AnimationController;
@@ -33,7 +32,7 @@ public class PickaxeViewModel extends ViewModel {
     }
 
     @Override
-    public ResourceLocation getAnimationResource(PickaxeViewModel animatable) {
+    public ResourceLocation getAnimationResource(ViewModel animatable) {
         return ResourceLocation.fromNamespaceAndPath("goldview", "object/vpickaxe");
     }
 }
