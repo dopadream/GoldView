@@ -1,21 +1,21 @@
 package io.github.dopadream.goldview.client;
 
+import io.github.dopadream.goldview.client.model.viewmodels.PickaxeViewmodel;
 import io.github.dopadream.goldview.client.renderer.PickaxeViewmodelRenderer;
+import io.github.dopadream.goldview.client.renderer.ViewmodelRenderer;
 import io.github.dopadream.goldview.mixin.ModelLayersAccessor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
+
+import static io.github.dopadream.goldview.GoldViewMod.MOD_ID;
 
 @Environment(EnvType.CLIENT)
 public class GoldViewModClient {
     public static final ModelLayerLocation PICKAXE_LAYER = register("pickaxeviewmodel");
-    public final PickaxeViewmodelRenderer pickaxeViewmodel = null;
 
     public static void init(){
-        PickaxeViewmodelRenderer pickaxe = PickaxeViewmodelRenderer::new;
 
     }
 
@@ -33,10 +33,6 @@ public class GoldViewModClient {
     }
 
     private static ModelLayerLocation createLocation(String string, String string2) {
-        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("goldview", string), string2);
+        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MOD_ID, string), string2);
     }
-
-    static {
-    }
-
 }

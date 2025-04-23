@@ -3,6 +3,8 @@ package io.github.dopadream.goldview.fabric.client;
 import io.github.dopadream.goldview.client.GoldViewModClient;
 import io.github.dopadream.goldview.client.model.viewmodels.PickaxeViewmodel;
 import io.github.dopadream.goldview.client.renderer.PickaxeViewmodelRenderer;
+import io.github.dopadream.goldview.client.renderer.ViewmodelRenderer;
+import io.github.dopadream.goldview.client.renderer.ViewmodelRendererManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -14,7 +16,10 @@ public final class GoldViewModFabricClient implements ClientModInitializer {
         // This entrypoint is suitable for setting up client-specific logic, such as rendering.
         GoldViewModClient.init();
 
-        EntityRendererRegistry.register(EntityType.PLAYER, PickaxeViewmodelRenderer::new);
+        EntityRendererRegistry.register(EntityType.PLAYER, ctx -> {
+            ViewmodelRendererManager.init(ctx);
+            return new PickaxeViewmodelRenderer(ctx);
+        });
         EntityModelLayerRegistry.registerModelLayer(GoldViewModClient.PICKAXE_LAYER, PickaxeViewmodel::createLayer);
     }
 }
