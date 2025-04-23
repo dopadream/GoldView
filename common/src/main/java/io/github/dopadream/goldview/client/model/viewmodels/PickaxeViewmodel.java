@@ -3,6 +3,8 @@ package io.github.dopadream.goldview.client.model.viewmodels;
 import io.github.dopadream.goldview.client.ViewmodelRenderState;
 import io.github.dopadream.goldview.client.animation.PickaxeViewmodelAnimation;
 import io.github.dopadream.goldview.client.model.ViewModel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -10,6 +12,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 
+@Environment(EnvType.CLIENT)
 public class PickaxeViewmodel extends ViewModel<ViewmodelRenderState> {
 
 	private final ModelPart root;

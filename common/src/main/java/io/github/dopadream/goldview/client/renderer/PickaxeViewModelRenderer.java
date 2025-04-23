@@ -3,6 +3,8 @@ package io.github.dopadream.goldview.client.renderer;
 import io.github.dopadream.goldview.client.GoldViewModClient;
 import io.github.dopadream.goldview.client.ViewmodelRenderState;
 import io.github.dopadream.goldview.client.model.viewmodels.PickaxeViewmodel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
@@ -12,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static io.github.dopadream.goldview.GoldViewMod.MOD_ID;
 
+@Environment(EnvType.CLIENT)
 public class PickaxeViewmodelRenderer extends ViewmodelRenderer<Player, ViewmodelRenderState, PickaxeViewmodel>{
     public PickaxeViewmodelRenderer(EntityRendererProvider.Context context) {
         super(context,
