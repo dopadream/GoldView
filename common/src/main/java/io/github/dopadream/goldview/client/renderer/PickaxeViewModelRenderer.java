@@ -1,35 +1,34 @@
 package io.github.dopadream.goldview.client.renderer;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import io.github.dopadream.goldview.client.model.PickaxeViewModel;
-import io.github.dopadream.goldview.client.model.ViewModel;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import io.github.dopadream.goldview.client.GoldViewModClient;
+import io.github.dopadream.goldview.client.ViewmodelRenderState;
+import io.github.dopadream.goldview.client.model.viewmodels.PickaxeViewmodel;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.renderer.GeoObjectRenderer;
-import software.bernie.geckolib.renderer.base.GeoRenderState;
+import net.minecraft.world.entity.LivingEntity;
+import org.jetbrains.annotations.NotNull;
 
-public class PickaxeViewModelRenderer extends GeoObjectRenderer<ViewModel> {
+import static io.github.dopadream.goldview.GoldViewMod.MOD_ID;
 
-    public PickaxeViewModelRenderer(PickaxeViewModel model)
-    {
-        super(model);
+public class PickaxeViewmodelRenderer extends LivingEntityRenderer<LivingEntity, LivingEntityRenderState, EntityModel<LivingEntityRenderState>> {
+    public PickaxeViewmodelRenderer(EntityRendererProvider.Context context) {
+        super(context,
+                (EntityModel) new PickaxeViewmodel(context.bakeLayer(GoldViewModClient.PICKAXE_LAYER)),
+                0.3F);
     }
 
     @Override
-    public @Nullable RenderType getRenderType(GeoRenderState renderState, ResourceLocation texture) {
-        return RenderType.entityTranslucent(texture);
+    public ResourceLocation getTextureLocation(LivingEntityRenderState livingEntityRenderState) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, "textures/viewmodel/iron_pickaxe.png");
     }
 
-    @Override
-    public long getInstanceId(ViewModel animatable, Void relatedObject) {
-        return animatable.hashCode();
-    }
 
     @Override
-    public void render(PoseStack poseStack, ViewModel animatable, @Nullable MultiBufferSource bufferSource, @Nullable RenderType renderType, @Nullable VertexConsumer buffer, int packedLight, float partialTick) {
-        super.render(poseStack, animatable, bufferSource, renderType, buffer, packedLight, partialTick);
+    public @NotNull LivingEntityRenderState createRenderState() {
+        return new ViewmodelRenderState();
     }
+
 }

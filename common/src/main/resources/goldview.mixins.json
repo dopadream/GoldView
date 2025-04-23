@@ -6,6 +6,7 @@
   "client": [
     "FOVMixin",
     "ItemInHandRendererMixin",
+    "ModelLayersAccessor",
     "OptionsMixin"
   ],
   "mixins": [

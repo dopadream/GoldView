@@ -1,47 +1,24 @@
 package io.github.dopadream.goldview.client.model;
 
-import io.github.dopadream.goldview.client.model.PickaxeViewModel;
-import net.minecraft.client.Minecraft;
+import io.github.dopadream.goldview.client.ViewmodelRenderState;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.animatable.GeoAnimatable;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.manager.AnimatableManager;
-import software.bernie.geckolib.model.GeoModel;
-import software.bernie.geckolib.renderer.base.GeoRenderState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class ViewModel extends GeoModel<ViewModel> implements GeoAnimatable {
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+import java.util.function.Function;
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+public class ViewModel<T extends ViewmodelRenderState> extends EntityModel<T> {
 
+    protected ViewModel(ModelPart modelPart) {
+        this(modelPart, RenderType::entityCutoutNoCull);
     }
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+    protected ViewModel(ModelPart modelPart, Function<ResourceLocation, RenderType> function) {
+        super(modelPart, function);
     }
 
-    @Override
-    public double getTick(Object object) {
-        assert Minecraft.getInstance().level != null;
-        return Minecraft.getInstance().level.getGameTime();
-    }
-
-    @Override
-    public ResourceLocation getModelResource(GeoRenderState renderState) {
-        return null;
-    }
-
-    @Override
-    public ResourceLocation getTextureResource(GeoRenderState renderState) {
-        return null;
-    }
-
-    @Override
-    public ResourceLocation getAnimationResource(ViewModel animatable) {
-        return null;
+    public void setupAnim(T entityRenderState) {
+        this.resetPose();
     }
 }
-
