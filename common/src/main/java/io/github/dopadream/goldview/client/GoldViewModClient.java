@@ -19,7 +19,7 @@ public class GoldViewModClient {
     public final PickaxeViewmodelRenderer pickaxeViewmodel = null;
 
     public static void init(){
-        EntityRendererProvider<Player> bat = PickaxeViewmodelRenderer::new;
+        EntityRendererProvider<Player> pickaxe = PickaxeViewmodelRenderer::new;
 
     }
 
