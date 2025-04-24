@@ -38,19 +38,18 @@ public abstract class ItemInHandRendererMixin {
     {
         boolean mainHand = interactionHand == InteractionHand.MAIN_HAND;
         HumanoidArm humanoidArm = mainHand ? abstractClientPlayer.getMainArm() : abstractClientPlayer.getMainArm().getOpposite();
-        int k = (humanoidArm == HumanoidArm.RIGHT) ? 1 : -1;
+        int q = (humanoidArm == HumanoidArm.RIGHT) ? 1 : -1;
 
 
         for (TagKey<Item> itemTagKey : itemStack.getTags().toList()) {
             switch (itemTagKey.location().getPath()) {
                 case "pickaxes":
-                   if (abstractClientPlayer.isInvisible()) {
+                   if (!abstractClientPlayer.isInvisible()) {
                        poseStack.pushPose();
                        // render item here
-                       this.applyItemArmTransform(poseStack, humanoidArm, f);
-                       poseStack.mulPose(Axis.ZP.rotationDegrees(40F));
+                       poseStack.translate(q * 0.7785682F, -0.5, -1.55731531F);
+                       poseStack.mulPose(Axis.XP.rotationDegrees(90));
                        ViewmodelRendererManager.PICKAXE_RENDERER.render(ViewmodelRendererManager.PICKAXE_RENDERER_STATE, poseStack, multiBufferSource, j);
-                       ViewmodelRendererManager.PICKAXE_RENDERER_STATE.idleAnimationState.start(0);
                        poseStack.popPose();
                    }
                    ci.cancel();

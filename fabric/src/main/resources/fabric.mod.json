@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "id": "goldview",
-  "version": "${version}",
+  "version": "1.0.0",
   "name": "GoldView",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "dopadream"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",

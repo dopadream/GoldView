@@ -1,5 +1,7 @@
 package io.github.dopadream.goldview.client.model.viewmodels;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import io.github.dopadream.goldview.client.ViewmodelRenderState;
 import io.github.dopadream.goldview.client.animation.PickaxeViewmodelAnimation;
 import io.github.dopadream.goldview.client.model.ViewModel;
@@ -11,6 +13,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 
 @Environment(EnvType.CLIENT)
 public class PickaxeViewmodel extends ViewModel<ViewmodelRenderState> {
@@ -35,13 +38,13 @@ public class PickaxeViewmodel extends ViewModel<ViewmodelRenderState> {
 		Minecraft minecraft = Minecraft.getInstance();
 
 		AbstractClientPlayer abstractClientPlayer = minecraft.player;
-        PlayerRenderer playerRenderer = null;
+        PlayerRenderer playerRenderer;
         if (abstractClientPlayer != null) {
             playerRenderer = (PlayerRenderer) minecraft.getEntityRenderDispatcher().getRenderer(abstractClientPlayer);
-			this.right_arm = this.r_bone.getChild("right_arm");
-			this.right_sleeve = this.right_arm.getChild("right_sleeve");
-			this.left_arm = this.l_bone.getChild("left_arm");
-			this.left_sleeve = this.left_arm.getChild("left_sleeve");
+			this.right_arm = playerRenderer.getModel().rightArm;
+			this.right_sleeve = playerRenderer.getModel().rightSleeve;
+			this.left_arm = playerRenderer.getModel().leftArm;
+			this.left_sleeve = playerRenderer.getModel().leftSleeve;
 		} else {
 			this.right_arm = null;
 			this.right_sleeve = null;
@@ -50,6 +53,13 @@ public class PickaxeViewmodel extends ViewModel<ViewmodelRenderState> {
 		}
 
 
+	}
+
+	public void renderArmsOnly(PoseStack poseStack, VertexConsumer vertexConsumer, int light) {
+		if (right_arm != null) right_arm.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+		if (right_sleeve != null) right_sleeve.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+		if (left_arm != null) left_arm.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+		if (left_sleeve != null) left_sleeve.render(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
 	}
 
 	public static LayerDefinition createLayer() {
@@ -80,4 +90,5 @@ public class PickaxeViewmodel extends ViewModel<ViewmodelRenderState> {
 		super.setupAnim(viewmodelRenderState);
 		this.animate(viewmodelRenderState.idleAnimationState, PickaxeViewmodelAnimation.PICKAXE_IDLE, viewmodelRenderState.ageInTicks);
 	}
+
 }

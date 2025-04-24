@@ -6,12 +6,13 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Function;
 
 @Environment(EnvType.CLIENT)
-public abstract class ViewModel<T extends ViewmodelRenderState> extends EntityModel<T> {
+public abstract class ViewModel<T extends LivingEntityRenderState> extends EntityModel<T> {
 
     protected ViewModel(ModelPart modelPart) {
         this(modelPart, RenderType::itemEntityTranslucentCull);
@@ -20,5 +21,4 @@ public abstract class ViewModel<T extends ViewmodelRenderState> extends EntityMo
     protected ViewModel(ModelPart modelPart, Function<ResourceLocation, RenderType> function) {
         super(modelPart, function);
     }
-
 }
