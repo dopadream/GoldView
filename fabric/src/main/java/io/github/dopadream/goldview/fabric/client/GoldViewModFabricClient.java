@@ -8,6 +8,7 @@ import io.github.dopadream.goldview.client.renderer.ViewmodelRendererManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EntityType;
 
 public final class GoldViewModFabricClient implements ClientModInitializer {
@@ -20,6 +21,10 @@ public final class GoldViewModFabricClient implements ClientModInitializer {
             ViewmodelRendererManager.init(ctx);
             return new PickaxeViewmodelRenderer(ctx);
         });
+
+        EntityModelLayerRegistry.registerModelLayer(GoldViewModClient.PICKAXE_ITEM_LAYER, PickaxeViewmodel::createPickaxeLayer);
         EntityModelLayerRegistry.registerModelLayer(GoldViewModClient.PICKAXE_LAYER, PickaxeViewmodel::createLayer);
+        EntityModelLayerRegistry.registerModelLayer(GoldViewModClient.PICKAXE_LAYER_SLIM, PickaxeViewmodel::createSlimLayer);
+
     }
 }

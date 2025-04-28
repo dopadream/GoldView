@@ -32,3 +32,4 @@ replay_pid*
 /neoforge/run
 /neoforge/build
 /neoforge/.gradle
+/fabric/build

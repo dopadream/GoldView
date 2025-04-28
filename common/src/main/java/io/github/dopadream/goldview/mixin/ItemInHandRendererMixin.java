@@ -47,9 +47,9 @@ public abstract class ItemInHandRendererMixin {
                    if (!abstractClientPlayer.isInvisible()) {
                        poseStack.pushPose();
                        // render item here
-                       poseStack.translate(q * 0.7785682F, -0.5, -1.55731531F);
-                       poseStack.mulPose(Axis.XP.rotationDegrees(90));
+                       poseStack.mulPose(Axis.ZP.rotationDegrees(180));
                        ViewmodelRendererManager.PICKAXE_RENDERER.render(ViewmodelRendererManager.PICKAXE_RENDERER_STATE, poseStack, multiBufferSource, j);
+                       ViewmodelRendererManager.PICKAXE_RENDERER_STATE.ageInTicks = abstractClientPlayer.tickCount;
                        poseStack.popPose();
                    }
                    ci.cancel();

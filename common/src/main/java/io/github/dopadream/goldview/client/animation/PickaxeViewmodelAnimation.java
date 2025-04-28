@@ -20,4 +20,9 @@ public class PickaxeViewmodelAnimation {
                     )
             )
             .build();
+
+
+    public static void init() {
+
+    }
 }

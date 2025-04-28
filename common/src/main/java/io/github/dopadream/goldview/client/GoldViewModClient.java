@@ -1,5 +1,6 @@
 package io.github.dopadream.goldview.client;
 
+import io.github.dopadream.goldview.client.animation.PickaxeViewmodelAnimation;
 import io.github.dopadream.goldview.client.model.viewmodels.PickaxeViewmodel;
 import io.github.dopadream.goldview.client.renderer.PickaxeViewmodelRenderer;
 import io.github.dopadream.goldview.client.renderer.ViewmodelRenderer;
@@ -13,10 +14,14 @@ import static io.github.dopadream.goldview.GoldViewMod.MOD_ID;
 
 @Environment(EnvType.CLIENT)
 public class GoldViewModClient {
-    public static final ModelLayerLocation PICKAXE_LAYER = register("pickaxeviewmodel");
+    public static final ModelLayerLocation PICKAXE_LAYER = register("v_pickaxe");
+    public static final ModelLayerLocation PICKAXE_LAYER_SLIM = register("v_pickaxe_s");
+    public static final ModelLayerLocation PICKAXE_ITEM_LAYER = register("v_pickaxe_item");
+
+
 
     public static void init(){
-
+        PickaxeViewmodelAnimation.init();
     }
 
     private static ModelLayerLocation register(String string) {
